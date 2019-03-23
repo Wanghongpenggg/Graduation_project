@@ -1,61 +1,50 @@
-<<<<<<< HEAD
-# Graduation_project
-It is my half-finished graduation project
-=======
-<<<<<<< HEAD
-# Graduation_project
-It is my half-finished graduation project
-=======
 # dj_platform
 
-# 界面功能
+#interface function
 
-## 矿山行业管理平台功能
+## Mine industry management platform function
 
-### 企业管理
-* 企业注册
-  * 提交以下信息
-    * 企业用户名
-    * 密码
-    * 企业代码
-    * 企业名称
-    * 企业通信地址
-    * 企业邮政编码
-    * 企业联系电话
-    * 企业电子邮箱
-    * 企业所属地区代码
-* 企业信息修改
-  * 修改企业注册时提交的信息，但企业用户名和企业代码不能修改
-* 查看企业信息
-  * 可以看到企业注册时提交的信息，注册提交的进行状态、企业下属矿山信息。只有企业注册审核通过才能进行矿山管理和标识注册。
+### Enterprise Management
+* Registered
+  * Submit the following information
+    * Enterprise username
+    * Password
+    * Enterprise code
+    * Company Name
+    * Corporate communication address
+    * Business zip code
+    * Corporate contact number
+    * Corporate email
+    * The region code of the company
+* Enterprise information modification
+  * Modify the information submitted when the company is registered, but the enterprise username and enterprise code cannot be modified.
+* View company information
+  * You can see the information submitted at the time of registration, the status of the registration submission, and the mining information of the company. Mine management and identification registration can only be carried out after the enterprise registration has been approved.
 
-### 矿山管理
-  * 提交以下信息
-    * 矿山代码
-    * 矿山名称
-    * 矿山位置
-  * 矿山修改
-  * 矿山删除
-  
-### 标识注册
+### Mine Management
+  * Submit the following information
+    * Mine code
+    * Mine name
+    * Mine location
+  * Mine modification
+  * Mine removal
+  
+### Logo Registration
 
-提供设备注册和数据注册的元数据信息
+Provide metadata information for device registration and data registration
 
-## 东杰二级节点管理
+## Dongjie secondary node management
 
-### 企业管理
-* 企业注册
-  * 跟企业一样提交企业注册
-* 已注册企业页面
-  * 显示已注册企业列表，每个企业后面有“查看”按钮，可以查看企业详细信息，包括企业注册时提交的信息和企业下属所有的矿山信息。*有修改按钮，可以修改企业信息*
-* 待审核企业页面
-  * 显示待审核的所有企业列表，每个企业后面有“审核”按钮
+### Enterprise Management
+* Registered
+  * Submit business registration as a business
+* Registered company page
+  * Display the list of registered companies. Each company has a “View” button to view the company details, including the information submitted during the company registration and all mine information of the company. * There is a modification button to modify corporate information*
+* Pending business page
+  * Display a list of all businesses to be reviewed, each with an "Audit" button
 
-### 矿山管理
-* 跟企业一样进行矿山管理
+### Mine Management
+* Mining management like a company
 
-### 标识注册
-* 跟企业一样提交标识注册，但是可以选择标识所属企业或矿山
-
->>>>>>> the initial edition
->>>>>>> the initial edition
+### Logo Registration
+* Submit the logo registration as the company, but you can choose to identify the company or mine
