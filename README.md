@@ -1,6 +1,6 @@
 # dj_platform
 
-#interface function
+# interface function
 
 ## Mine industry management platform function
 
@@ -22,6 +22,7 @@
   * You can see the information submitted at the time of registration, the status of the registration submission, and the mining information of the company. Mine management and identification registration can only be carried out after the enterprise registration has been approved.
 
 ### Mine Management
+
   * Submit the following information
     * Mine code
     * Mine name
@@ -39,7 +40,7 @@ Provide metadata information for device registration and data registration
 * Registered
   * Submit business registration as a business
 * Registered company page
-  * Display the list of registered companies. Each company has a “View” button to view the company details, including the information submitted during the company registration and all mine information of the company. * There is a modification button to modify corporate information*
+  * Display the list of registered companies. Each company has a “View” button to view the company details, including the information submitted during the company registration and all mine information of the company. There is a modification button to modify corporate information.
 * Pending business page
   * Display a list of all businesses to be reviewed, each with an "Audit" button
 
