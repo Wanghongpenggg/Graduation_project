@@ -1,0 +1,182 @@
+<form id="post_form" action="{{ url_for('back.add_identifier') }}" method="post">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">注册标识</div>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="handle">Handle</label>
+                <input type="text" class="form-control" id="handle" name="handle">
+            </div>
+            <div class="form-group">
+                <label for="type">类型</label>
+                <select class="form-control" id="type_select" name="type">
+                    <option value="sensor">传感器</option>
+                    <option value="equipment">设备</option>
+                    <option value="system">系统</option>
+                    <option value="sensor_data">传感器数据</option>
+                    <option value="equipment_data">设备数据</option>
+                    <option value="system_data">系统数据</option>
+                </select>
+            </div>
+            <div class="form-group metadata" id="sensor_metadata">
+                <label for="content">查询接口连接</label>
+                <input type="text" class="form-control" id="content" name="content">
+                <label for="sensorID">传感器唯一ID</label>
+                <input type="text" class="form-control" id="sensorID" name="sensorID">
+                <label for="sensorNumber">传感器编号</label>
+                <input type="text" class="form-control" id="sensorNumber" name="sensorNumber">
+                <label for="sensorName">传感器名称</label>
+                <input type="text" class="form-control" id="sensorNumber" name="sensorName">
+                <label for="sensorCategory">传感器类别</label>
+                <input type="text" class="form-control" id="sensorCategory" name="sensorCategory">
+                <label for="sensorModel">传感器型号</label>
+                <input type="text" class="form-control" id="sensorModel" name="sensorModel">
+                <label for="installationPosition">安装位置</label>
+                <input type="text" class="form-control" id="installationPosition" name="installationPosition">
+                <label for="lowAlarmValue">低报警值</label>
+                <input type="text" class="form-control" id="lowAlarmValue" name="lowAlarmValue">
+                <label for="highAlarmValue">高报警值</label>
+                <input type="text" class="form-control" id="highAlarmValue" name="highAlarmValue">
+                <label for="applicationState">应用状态</label>
+                <input type="text" class="form-control" id="applicationState" name="applicationState">
+                <label for="connectionChannel">连接通道</label>
+                <input type="text" class="form-control" id="connectionChannel" name="connectionChannel">
+                <label for="lowErrorDifference">低误差值</label>
+                <input type="text" class="form-control" id="lowErrorDifference" name="lowErrorDifference">
+                <label for="highErrorDifference">高误差值</label>
+                <input type="text" class="form-control" id="highErrorDifference" name="highErrorDifference">
+                <label for="lowCurrentValue">低电流值(ma)</label>
+                <input type="text" class="form-control" id="lowCurrentValue" name="lowCurrentValue">
+                <label for="highCurrentValue">高电流值(ma)</label>
+                <input type="text" class="form-control" id="highCurrentValue" name="highCurrentValue">
+                <label for="rangeUnit">量程/单位</label>
+                <input type="text" class="form-control" id="rangeUnit" name="rangeUnit">
+                <label for="dateOfProduction">出厂日期</label>
+                <input type="text" class="form-control is_timepicker" id="dateOfProduction" name="dateOfProduction">
+                <label for="installDate">安装日期</label>
+                <input type="text" class="form-control is_timepicker" id="installDate" name="installDate">
+                <label for="discardedDate">报废日期</label>
+                <input type="text" class="form-control is_timepicker" id="discardedDate" name="discardedDate">
+                <label for="storageDate">注册日期</label>
+                <input type="text" class="form-control is_timepicker" id="storageDate" name="storageDate">
+            </div>
+            <div class="form-group metadata" id="equipment_metadata">
+                <label for="content">查询接口连接</label>
+                <input type="text" class="form-control" id="content" name="content">
+                <label for="equipmentID">设备唯一ID</label>
+                <input type="text" class="form-control" id="equipmentID" name="equipmentID">
+                <label for="equipmentNumber">设备编号</label>
+                <input type="text" class="form-control" id="equipmentNumber" name="equipmentNumber">
+                <label for="equipmentName">设备名称</label>
+                <input type="text" class="form-control" id="equipmentName" name="equipmentName">
+                <label for="equipmentCategory">设备类别(代码表)</label>
+                <input type="text" class="form-control" id="equipmentCategory" name="equipmentCategory">
+                <label for="equipmentModel">设备型号</label>
+                <input type="text" class="form-control" id="equipmentModel" name="equipmentModel">
+                <label for="installationPosition">安装位置</label>
+                <input type="text" class="form-control" id="installationPosition" name="installationPosition">
+                <label for="applicationState">应用状态</label>
+                <input type="text" class="form-control" id="applicationState" name="applicationState">
+                <label for="rangeUnit">量程/单位</label>
+                <input type="text" class="form-control" id="rangeUnit" name="rangeUnit">
+                <label for="dateOfProduction">出厂日期</label>
+                <input type="text" class="form-control is_timepicker" id="dateOfProduction" name="dateOfProduction">
+                <label for="installDate">安装日期</label>
+                <input type="text" class="form-control is_timepicker" id="installDate" name="installDate">
+                <label for="discardedDate">报废日期</label>
+                <input type="text" class="form-control is_timepicker" id="discardedDate" name="discardedDate">
+                <label for="storageDate">注册日期</label>
+                <input type="text" class="form-control is_timepicker" id="storageDate" name="storageDate">
+            </div>
+            <div class="form-group metadata" id="system_metadata">
+                <label for="content">查询接口连接</label>
+                <input type="text" class="form-control" id="content" name="content">
+                <label for="systemID">系统唯一ID</label>
+                <input type="text" class="form-control" id="systemID" name="systemID">
+                <label for="systemNumber">系统编号</label>
+                <input type="text" class="form-control" id="systemNumber" name="systemNumber">
+                <label for="systemName">系统名称</label>
+                <input type="text" class="form-control" id="systemName" name="systemName">
+                <label for="systemCategory">系统类别</label>
+                <input type="text" class="form-control" id="systemCategory" name="systemCategory">
+                <label for="systemModel">系统型号(版本号)</label>
+                <input type="text" class="form-control" id="systemModel" name="systemModel">
+                <label for="installationPosition">安装位置</label>
+                <input type="text" class="form-control" id="installationPosition" name="installationPosition">
+                <label for="applicationState">应用状态</label>
+                <input type="text" class="form-control" id="applicationState" name="applicationState">
+                <label for="rangeUnit">量程/单位</label>
+                <input type="text" class="form-control" id="rangeUnit" name="rangeUnit">
+                <label for="dateOfProduction">出厂日期</label>
+                <input type="text" class="form-control is_timepicker" id="dateOfProduction" name="dateOfProduction">
+                <label for="installDate">安装日期</label>
+                <input type="text" class="form-control is_timepicker" id="installDate" name="installDate">
+                <label for="discardedDate">报废日期</label>
+                <input type="text" class="form-control is_timepicker" id="discardedDate" name="discardedDate">
+                <label for="storageDate">注册日期</label>
+                <input type="text" class="form-control is_timepicker" id="storageDate" name="storageDate">
+            </div>
+            <div class="form-group metadata" id="data_metadata">
+                <label for="content">查询接口连接</label>
+                <input type="text" class="form-control" id="content" name="content">
+                <label for="rangeUnit">单位</label>
+                <input type="text" class="form-control" id="rangeUnit" name="rangeUnit">
+                <label for="storageDate">注册时间(采集时间)</label>
+                <input type="text" class="form-control is_timepicker" id="storageDate" name="storageDate">
+                <label for="dataStatus">状态标识</label>
+                <input type="text" class="form-control " id="dataStatus" name="dataStatus">
+                <label for="function">功能类别</label>
+                <input type="text" class="form-control " id="function" name="function">
+                <label for="relationID">唯一ID</label>
+                <input type="text" class="form-control " id="relationID" name="relationID">
+            </div>
+        </div>
+        <div class="card-action">
+            <button class="btn btn-success" type="submit">注册</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    document.querySelectorAll(".metadata").forEach(function (metadata_div) {
+        if (metadata_div!==document.querySelector("#sensor_metadata")){
+            metadata_div.style.display = "none";
+            for (var i = 0; i < metadata_div.children.length; i++) {
+                metadata_div.children[i].disabled = "disabled";
+            }
+        }
+    });
+    var type_select = document.querySelector("#type_select");
+    document.querySelector("#sensor_metadata").style.display = "block";
+
+    type_select.addEventListener("change", function (evt) {
+        document.querySelectorAll(".metadata").forEach(function (metadata_div) {
+            metadata_div.style.display = "none";
+            for (var i = 0; i < metadata_div.children.length; i++) {
+                metadata_div.children[i].disabled = "disabled";
+            }
+        });
+        var target_metadata = null;
+        if (evt.target.value === "sensor") {
+            target_metadata = document.querySelector("#sensor_metadata");
+        } else if (evt.target.value === "equipment") {
+            target_metadata = document.querySelector("#equipment_metadata");
+        } else if (evt.target.value === "system") {
+            target_metadata = document.querySelector("#system_metadata");
+        } else {
+            target_metadata = document.querySelector("#data_metadata");
+        }
+        target_metadata.style.display = "block";
+        for (var i = 0; i < target_metadata.children.length; i++) {
+            target_metadata.children[i].disabled = "";
+        }
+    });
+    document.querySelectorAll(".is_timepicker").forEach(function (timepicker) {
+        laydate.render({
+            elem: timepicker //指定元素
+            , type: 'datetime'
+        });
+    });
+
+</script>

@@ -1,0 +1,126 @@
+{% extends 'back/base.html'%}
+{% from 'macros/pagination.html' import pagination_macro%}
+{% block main %}
+<div class="content">
+    <div class="container-fluid">
+        <!--<h4 class="page-title">修改功能</h4>-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">矿山列表</div>
+                    </div>
+                    <div class="card-body  show-card">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">矿山代码</th>
+                                <th scope="col">矿山名称</th>
+                                <th scope="col">矿山位置</th>
+                                <th scope="col">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for mine in pagination.items%}
+                            <tr>
+                                <td>{{loop.index}}</td>
+                                <td>{{mine['mine_code']}}</td>
+                                <td>{{mine['mine_name']}}</td>
+                                <td>{{mine['mine_loc']}}</td>
+                                <td>
+                                    <button class="btn btn-warning" name="edit_btn" this_id="{{mine.id}}">修改</button><!--TODO: ACITON-->
+                                    <button class="btn btn-danger" name="del_btn" type="submit" request_url="{{url_for('back.manage_mine')}}" back_ur="{{url_for('back.manage_mine')}}" this_id="{{mine.id}}">删除</button><!--TODO: ACTION-->
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {{ pagination_macro(pagination,'back.manage_mine') }}
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success" id="add_btn">添加</button>
+                    </div>
+                </div>
+                <form id="post_form" hidden action="{{url_for('back.manage_mine')}}" method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">注册矿山</div>
+                        </div>
+                        <div class="card-body">
+                            <input id="is_edit" name="is_edit" value="0" hidden>
+                            <input id="edit_id" name="edit_id" hidden>
+                            <div class="form-group">
+                                <label for="mine_code">矿山代码</label>
+                                <input type="text" class="form-control" id="mine_code" name="mine_code">
+                            </div>
+                            <div class="form-group">
+                                <label for="mine_name">矿山名称</label>
+                                <input type="text" class="form-control" id="mine_name" name="mine_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="mine_loc">矿山位置</label>
+                                <input type="text" class="form-control" id="mine_loc" name="mine_loc">
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <button class="btn btn-success" type="submit">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block jscript %}
+<script>
+    function show_form(form,title,id,m_code,m_name,m_loc){
+        form.removeAttribute('hidden');
+        title_div = form.getElementsByClassName('card-title')[0];
+        title_div.innerText = title;
+        if(title=='修改矿山信息'){
+            is_edit = document.getElementById('is_edit');
+            is_edit.setAttribute('value',1);
+            edit_id = document.getElementById('edit_id');
+            edit_id.setAttribute('value',id);
+            mine_code = document.getElementById('mine_code');
+            mine_code.setAttribute('value',m_code);
+            mine_name = document.getElementById('mine_name');
+            mine_name.setAttribute('value',m_name);
+            mine_loc = document.getElementById('mine_loc');
+            mine_loc.setAttribute('value',m_loc);
+        }
+    }
+    post_form = document.getElementById('post_form');
+    add_btn = document.getElementById('add_btn');
+    add_btn.onclick=function(){
+        show_form(post_form,'添加矿山信息',null,null,null,null);
+    };
+    edit_btn_list = document.getElementsByName('edit_btn');
+    for (i=0; i< edit_btn_list.length;i++){
+        edit_btn_list[i].addEventListener('click',(function(edit_btn){
+            return function(){
+            td_list = edit_btn.parentElement.parentElement.children;
+            show_form(post_form,'修改矿山信息',edit_btn.getAttribute('this_id'),td_list[1].innerText,td_list[2].innerText,td_list[3].innerText);
+            }
+        })(edit_btn_list[i]),false);
+    }
+
+    $("[name='del_btn']").click(function(){
+        $.ajax({
+            url:$(this).attr('request_url'),
+            type:'DELETE',
+            dataType:'text',
+            data:{
+                'del_id':$(this).attr('this_id')
+            },
+            success: function(){
+                window.location.reload();
+            }
+        })
+    });
+
+</script>
+{% endblock %}

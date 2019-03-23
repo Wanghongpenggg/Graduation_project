@@ -1,0 +1,82 @@
+{% extends 'back/base.html' %}
+{% from 'macros/pagination.html' import pagination_macro %}
+{% from 'back/company/manage_identifier_part/get_type_macro.html' import get_type_macro %}
+{% block main %}
+    <div class="content">
+        <div class="container-fluid">
+            <!--<h4 class="page-title">修改功能</h4>-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title card_title_left">标识管理</div>
+                            <div class="dropdown card_title_right">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1"
+                                        data-toggle="dropdown">
+                                    {% if part=="all" %}全部标识{% elif part=="equipment" %}设备标识{% elif part=="data" %}
+                                        数据标识{% endif %}
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                                    <a class="dropdown-item" href="{{ url_for('back.manage_identifier',part='all') }}">全部标识</a>
+                                    <a class="dropdown-item"
+                                       href="{{ url_for('back.manage_identifier',part='equipment') }}">设备标识</a>
+                                    <a class="dropdown-item" href="{{ url_for('back.manage_identifier',part='data') }}">数据标识</a>
+                                </ul>
+
+                            </div>
+                        </div>
+                        <div class="card-body  show-card">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Handle</th>
+                                    <th scope="col">类型</th>
+                                    <th scope="col">注册时间</th>
+                                    <th scope="col">操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for identifier in pagination.items %}
+                                    <tr>
+                                        <td>{{ loop.index }}</td>
+                                        <td>{{ identifier.handle }}</td>
+                                        <td>{{ get_type_macro(identifier.type) }}</td>
+                                        <td>{{ identifier.create_time }}</td>
+                                        <td>
+                                            <button class="btn btn-warning" name="view_btn"
+                                                    this_url="{{ url_for('back.view_identifier',id=identifier.id) }}">
+                                                查看信息
+                                            </button>
+                                            <!--TODO: ACITON-->
+                                            <!--<button class="btn btn-danger" name="del_btn" this_id="">删除</button>-->
+                                            <!--TODO: ACTION-->
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            {{ pagination_macro(pagination,'back.manage_identifier',part=part) }}
+                        </div>
+                        <div class="card-action">
+                            <button class="btn btn-success" id="add_btn">注册标识</button>
+                        </div>
+                    </div>
+                    <div id="info_form"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block jscript %}
+    <script>
+        $("#add_btn").click(function () {
+            $("#info_form").load("{{ url_for('back.add_identifier') }}");
+        });
+        $("[name='view_btn']").click(function () {
+            {#//$("#info_form").load("{{ url_for('back.view_identifier') }}?id=" + $(this).attr("this_id") + "");#}
+            $("#info_form").load($(this).attr("this_url"));
+        });
+    </script>
+{% endblock %}

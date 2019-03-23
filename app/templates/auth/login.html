@@ -1,0 +1,31 @@
+{% extends 'auth/base.html' %}
+
+{% block header %}
+<h1>{% block title %}登陆{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div class="col-md-12">
+    <form method="post" action="{{ url_for('auth.login') }}">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">矿山行业管理平台</div>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+            </div>
+            <div class="card-action">
+                <button class="btn btn-default" type="submit">登陆</button>
+                <a class="btn btn-default" href="{{ url_for('auth.register') }}">注册</a>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

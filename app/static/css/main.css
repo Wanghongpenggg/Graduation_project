@@ -1,0 +1,21 @@
+.show-card{
+    text-align:center;
+}
+.pagination_bar{
+    display:inline-block;
+    justify-content: center;
+}
+.pagination_li{
+    display:inline-block;
+}
+
+.card_title_left{
+    float:left;
+}
+.card_title_right{
+    float:right;
+}
+
+.metadata{
+    display: none;
+}

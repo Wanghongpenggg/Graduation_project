@@ -1,0 +1,92 @@
+{% extends 'back/base.html'%}
+{% from 'macros/pagination.html' import pagination_macro%}
+{% block main %}
+<div class="content">
+    <div class="container-fluid">
+        <!--<h4 class="page-title">修改功能</h4>-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title card_title_left">企业列表</div>
+                        <div class="dropdown card_title_right">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1"
+                                    data-toggle="dropdown">
+                                {%if part=="verify"%}未审核企业{% else %}全部企业{%endif%}
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                                <a class="dropdown-item" href="{{url_for('back.manage_company',part='verify')}}">未审核企业</a>
+                                <a class="dropdown-item" href="{{url_for('back.manage_company',part='all')}}">全部企业</a>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="card-body  show-card">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">企业代码</th>
+                                <th scope="col">企业名称</th>
+                                <th scope="col">审核状态</th>
+                                <th scope="col">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for company in pagination.items%}
+                            <tr>
+                                <td>{{loop.index}}</td>
+                                <td>{{company.company_code}}</td>
+                                <td>{{company.company_name}}</td>
+                                <td>{% if company.verify %}已通过{%else%}未通过{%endif%}</td>
+                                <td>
+                                    <button class="btn btn-warning" name="view_btn" this_id="{{company.id}}">查看信息</button>
+                                    <!--TODO: ACITON-->
+                                    <button class="btn btn-danger" name="del_btn" type="submit"
+                                            request_url="{{url_for('back.del_company')}}"
+                                            back_ur="{{url_for('back.manage_company')}}" this_id="{{company.id}}">删除
+                                    </button><!--TODO: ACTION-->
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {{ pagination_macro(pagination,'back.manage_company',part=part) }}
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success" id="add_btn">新增企业</button>
+                    </div>
+                </div>
+                <div id="info_form"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block jscript %}
+<script>
+
+    $("[name='view_btn']").click(function () {
+        $("#info_form").load("{{ url_for('back.view_company') }}",{"view_id":$(this).attr('this_id')});
+    });
+    $("[name='del_btn']").click(function(){
+        $.ajax({
+            url:$(this).attr('request_url'),
+            type:'DELETE',
+            dataType:'text',
+            data:{
+                'del_id':$(this).attr('this_id')
+            },
+            success: function(){
+                window.location.reload();
+            }
+        })
+    });
+    $("#add_btn").click(function () {
+        $("#info_form").load("{{ url_for('back.add_company') }}");
+    });
+
+
+</script>
+{% endblock %}

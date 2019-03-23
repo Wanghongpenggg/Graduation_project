@@ -1,0 +1,28 @@
+{% macro pagination_macro(pagination, endpoint) %}
+{% if pagination.total!=0 %}
+<ul class="pagination pg-primary pagination_bar">
+    {% if pagination.has_prev %}
+    <li class="page-item pagination_li">
+        <a class="page-link" href="{{url_for(endpoint,page=(pagination.prev_num),**kwargs)}}"
+           aria-label="Previous">
+            <span aria-hidden="true">«</span>
+            <span class="sr-only">上一页</span>
+        </a>
+    </li>
+    {%endif%}
+    {% for i in range(1,pagination.pages+1) %}
+    <li class="page-item pagination_li {% if i==pagination.page %}active{%endif%}"><a class="page-link"
+                                                                                      href="{{url_for(endpoint,page=i,**kwargs)}}">{{i}}</a>
+    </li>
+    {% endfor %}
+    {% if pagination.has_next %}
+    <li class="page-item pagination_li">
+        <a class="page-link " href="{{url_for(endpoint,page=(pagination.next_num),**kwargs)}}" aria-label="Next">
+            <span aria-hidden="true">»</span>
+            <span class="sr-only">下一页</span>
+        </a>
+    </li>
+    {% endif %}
+</ul>
+{% endif %}
+{% endmacro %}

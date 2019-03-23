@@ -1,0 +1,44 @@
+<form id="post_form" action="{{ url_for('back.verify_company') }}" method="post">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">添加企业</div>
+        </div>
+        <div class="card-body">
+            <input name="verify_id" value="{{ id }}" hidden>
+            <div class="form-group">
+                <label for="company_code">企业代码</label>
+                <input type="text" class="form-control" id="company_code" name="company_code" disabled value="{{ company_code }}">
+            </div>
+            <div class="form-group">
+                <label for="company_name">企业名称</label>
+                <input type="text" class="form-control" id="company_name" name="company_name" disabled value="{{ company_name }}">
+            </div>
+            <div class="form-group">
+                <label for="company_address">通信地址</label>
+                <input type="text" class="form-control" id="company_address" name="company_address" disabled value="{{ company_address }}">
+            </div>
+            <div class="form-group">
+                <label for="postal_code">邮政编码</label>
+                <input type="text" class="form-control" id="postal_code" name="postal_code" disabled value="{{ postal_code }}">
+            </div>
+            <div class="form-group">
+                <label for="company_phone">联系电话</label>
+                <input type="text" class="form-control" id="company_phone" name="company_phone" disabled value="{{ company_phone }}">
+            </div>
+            <div class="form-group">
+                <label for="company_mail">电子邮箱</label>
+                <input type="text" class="form-control" id="company_mail" name="company_mail" disabled value="{{ company_mail }}">
+            </div>
+            <div class="form-group">
+                <label for="area_code">地区代码</label>
+                <input type="text" class="form-control" id="area_code" name="area_code" disabled value="{{ area_code }}">
+            </div>
+        </div>
+        {% if not verify %}
+        <div class="card-action">
+            <button class="btn btn-success" name="pass_btn" value="pass" type="submit">通过</button>
+            <button class="btn btn-success" name="pass_btn" value="no_pass" type="submit">不通过</button>
+        </div>
+        {% endif %}
+    </div>
+</form>

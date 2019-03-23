@@ -1,0 +1,146 @@
+<form id="post_form">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">注册标识</div>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="handle">Handle</label>
+                <input type="text" class="form-control" id="handle" name="handle" value="{{ identifier.handle }}" disabled>
+            </div>
+            <div class="form-group">
+                <label for="type">类型</label>
+                <select class="form-control" id="type_select" name="type" disabled>
+                    <option value="sensor" {% if identifier.type == 0 %} selected{% endif %}>传感器</option>
+                    <option value="equipment" {% if identifier.type == 1 %} selected{% endif %}>设备</option>
+                    <option value="system" {% if identifier.type == 2 %} selected{% endif %}>系统</option>
+                    <option value="sensor_data" {% if identifier.type == 3 %} selected{% endif %}>传感器数据</option>
+                    <option value="equipment_data" {% if identifier.type == 4 %} selected{% endif %}>设备数据</option>
+                    <option value="system_data" {% if identifier.type == 5 %} selected{% endif %}>系统数据</option>
+                </select>
+            </div>
+            {% if identifier.type == 0 %}
+            <div class="form-group" id="sensor_metadata">
+                <label for="content">查询接口连接</label>
+                <input type="text" class="form-control" id="content" name="content" disabled value="{{ identifier.metadata.content }}">
+                <label for="sensorID">传感器唯一ID</label>
+                <input type="text" class="form-control" id="sensorID" name="sensorID" disabled value="{{ identifier.metadata.sensorID }}">
+                <label for="sensorNumber">传感器编号</label>
+                <input type="text" class="form-control" id="sensorNumber" name="sensorNumber" disabled value="{{ identifier.metadata.sensorNumber }}">
+                <label for="sensorName">传感器名称</label>
+                <input type="text" class="form-control" id="sensorNumber" name="sensorName" disabled value="{{ identifier.metadata.sensorName }}">
+                <label for="sensorCategory">传感器类别</label>
+                <input type="text" class="form-control" id="sensorCategory" name="sensorCategory" disabled value="{{ identifier.metadata.sensorCategory }}">
+                <label for="sensorModel">传感器型号</label>
+                <input type="text" class="form-control" id="sensorModel" name="sensorModel" disabled value="{{ identifier.metadata.sensorModel }}">
+                <label for="installationPosition">安装位置</label>
+                <input type="text" class="form-control" id="installationPosition" name="installationPosition" disabled value="{{ identifier.metadata.installationPosition }}">
+                <label for="lowAlarmValue">低报警值</label>
+                <input type="text" class="form-control" id="lowAlarmValue" name="lowAlarmValue" disabled value="{{ identifier.metadata.lowAlarmValue }}">
+                <label for="highAlarmValue">高报警值</label>
+                <input type="text" class="form-control" id="highAlarmValue" name="highAlarmValue" disabled value="{{ identifier.metadata.highAlarmValue }}">
+                <label for="applicationState">应用状态</label>
+                <input type="text" class="form-control" id="applicationState" name="applicationState" disabled value="{{ identifier.metadata.applicationState }}">
+                <label for="connectionChannel">连接通道</label>
+                <input type="text" class="form-control" id="connectionChannel" name="connectionChannel" disabled value="{{ identifier.metadata.connectionChannel }}">
+                <label for="lowErrorDifference">低误差值</label>
+                <input type="text" class="form-control" id="lowErrorDifference" name="lowErrorDifference" disabled value="{{ identifier.metadata.lowErrorDifference }}">
+                <label for="highErrorDifference">高误差值</label>
+                <input type="text" class="form-control" id="highErrorDifference" name="highErrorDifference" disabled value="{{ identifier.metadata.highErrorDifference }}">
+                <label for="lowCurrentValue">低电流值(ma)</label>
+                <input type="text" class="form-control" id="lowCurrentValue" name="lowCurrentValue" disabled value="{{ identifier.metadata.lowCurrentValue }}">
+                <label for="highCurrentValue">高电流值(ma)</label>
+                <input type="text" class="form-control" id="highCurrentValue" name="highCurrentValue" disabled value="{{ identifier.metadata.highCurrentValue }}">
+                <label for="rangeUnit">量程/单位</label>
+                <input type="text" class="form-control" id="rangeUnit" name="rangeUnit" disabled value="{{ identifier.metadata.rangeUnit }}">
+                <label for="dateOfProduction">出厂日期</label>
+                <input type="text" class="form-control is_timepicker" id="dateOfProduction" name="dateOfProduction" disabled value="{{ identifier.metadata.dateOfProduction }}">
+                <label for="installDate">安装日期</label>
+                <input type="text" class="form-control is_timepicker" id="installDate" name="installDate" disabled value="{{ identifier.metadata.installDate }}">
+                <label for="discardedDate">报废日期</label>
+                <input type="text" class="form-control is_timepicker" id="discardedDate" name="discardedDate" disabled value="{{ identifier.metadata.discardedDate }}">
+                <label for="storageDate">注册日期</label>
+                <input type="text" class="form-control is_timepicker" id="storageDate" name="storageDate" disabled value="{{ identifier.metadata.storageDate }}">
+            </div>
+            {% elif identifier.type == 1 %}
+            <div class="form-group" id="equipment_metadata">
+                <label for="content">查询接口连接</label>
+                <input type="text" class="form-control" id="content" name="content" disabled value="{{ identifier.metadata.content }}">
+                <label for="equipmentID">设备唯一ID</label>
+                <input type="text" class="form-control" id="equipmentID" name="equipmentID" disabled value="{{ identifier.metadata.equipmentID }}">
+                <label for="equipmentNumber">设备编号</label>
+                <input type="text" class="form-control" id="equipmentNumber" name="equipmentNumber" disabled value="{{ identifier.metadata.equipmentNumber }}">
+                <label for="equipmentName">设备名称</label>
+                <input type="text" class="form-control" id="equipmentName" name="equipmentName" disabled value="{{ identifier.metadata.equipmentName }}">
+                <label for="equipmentCategory">设备类别(代码表)</label>
+                <input type="text" class="form-control" id="equipmentCategory" name="equipmentCategory" disabled value="{{ identifier.metadata.equipmentCategory }}">
+                <label for="equipmentModel">设备型号</label>
+                <input type="text" class="form-control" id="equipmentModel" name="equipmentModel" disabled value="{{ identifier.metadata.equipmentModel }}">
+                <label for="installationPosition">安装位置</label>
+                <input type="text" class="form-control" id="installationPosition" name="installationPosition" disabled value="{{ identifier.metadata.installationPosition }}">
+                <label for="applicationState">应用状态</label>
+                <input type="text" class="form-control" id="applicationState" name="applicationState" disabled value="{{ identifier.metadata.applicationState }}">
+                <label for="rangeUnit">量程/单位</label>
+                <input type="text" class="form-control" id="rangeUnit" name="rangeUnit" disabled value="{{ identifier.metadata.rangeUnit }}">
+                <label for="dateOfProduction">出厂日期</label>
+                <input type="text" class="form-control is_timepicker" id="dateOfProduction" name="dateOfProduction" disabled value="{{ identifier.metadata.dateOfProduction }}">
+                <label for="installDate">安装日期</label>
+                <input type="text" class="form-control is_timepicker" id="installDate" name="installDate" disabled value="{{ identifier.metadata.installDate }}">
+                <label for="discardedDate">报废日期</label>
+                <input type="text" class="form-control is_timepicker" id="discardedDate" name="discardedDate" disabled value="{{ identifier.metadata.discardedDate }}">
+                <label for="storageDate">注册日期</label>
+                <input type="text" class="form-control is_timepicker" id="storageDate" name="storageDate" disabled value="{{ identifier.metadata.storageDate }}">
+            </div>
+            {% elif identifier.type ==2 %}
+            <div class="form-group" id="system_metadata">
+                <label for="content">查询接口连接</label>
+                <input type="text" class="form-control" id="content" name="content" disabled value="{{ identifier.metadata.content }}" >
+                <label for="systemID">系统唯一ID</label>
+                <input type="text" class="form-control" id="systemID" name="systemID" disabled value="{{ identifier.metadata.systemID }}">
+                <label for="systemNumber">系统编号</label>
+                <input type="text" class="form-control" id="systemNumber" name="systemNumber" disabled value="{{ identifier.metadata.systemNumber }}">
+                <label for="systemName">系统名称</label>
+                <input type="text" class="form-control" id="systemName" name="systemName" disabled value="{{ identifier.metadata.systemName }}">
+                <label for="systemCategory">系统类别</label>
+                <input type="text" class="form-control" id="systemCategory" name="systemCategory" disabled value="{{ identifier.metadata.systemCategory }}">
+                <label for="systemModel">系统型号(版本号)</label>
+                <input type="text" class="form-control" id="systemModel" name="systemModel" disabled value="{{ identifier.metadata.systemModel }}">
+                <label for="installationPosition">安装位置</label>
+                <input type="text" class="form-control" id="installationPosition" name="installationPosition" disabled value="{{ identifier.metadata.installationPosition }}">
+                <label for="applicationState">应用状态</label>
+                <input type="text" class="form-control" id="applicationState" name="applicationState" disabled value="{{ identifier.metadata.applicationState }}">
+                <label for="rangeUnit">量程/单位</label>
+                <input type="text" class="form-control" id="rangeUnit" name="rangeUnit" disabled value="{{ identifier.metadata.rangeUnit }}">
+                <label for="dateOfProduction">出厂日期</label>
+                <input type="text" class="form-control is_timepicker" id="dateOfProduction" name="dateOfProduction" disabled value="{{ identifier.metadata.dateOfProduction }}">
+                <label for="installDate">安装日期</label>
+                <input type="text" class="form-control is_timepicker" id="installDate" name="installDate" disabled value="{{ identifier.metadata.installDate }}">
+                <label for="discardedDate">报废日期</label>
+                <input type="text" class="form-control is_timepicker" id="discardedDate" name="discardedDate" disabled value="{{ identifier.metadata.discardedDate }}">
+                <label for="storageDate">注册日期</label>
+                <input type="text" class="form-control is_timepicker" id="storageDate" name="storageDate" disabled value="{{ identifier.metadata.storageDate }}">
+            </div>
+            {% else %}
+            <div class="form-group" id="data_metadata">
+                <label for="content">查询接口连接</label>
+                <input type="text" class="form-control" id="content" name="content" disabled value="{{ identifier.metadata.content }}">
+                <label for="rangeUnit">单位</label>
+                <input type="text" class="form-control" id="rangeUnit" name="rangeUnit" disabled value="{{ identifier.metadata.rangeUnit }}">
+                <label for="storageDate">注册时间(采集时间)</label>
+                <input type="text" class="form-control is_timepicker" id="storageDate" name="storageDate" disabled value="{{ identifier.metadata.storageDate }}">
+                <label for="dataStatus">状态标识</label>
+                <input type="text" class="form-control " id="dataStatus" name="dataStatus" disabled value="{{ identifier.metadata.dataStatus }}">
+                <label for="function">功能类别</label>
+                <input type="text" class="form-control " id="function" name="function" disabled value="{{ identifier.metadata.function }}">
+                <label for="relationID">唯一ID</label>
+                <input type="text" class="form-control " id="relationID" name="relationID" disabled value="{{ identifier.metadata.relationID }}">
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</form>
+
+<script>
+
+
+</script>

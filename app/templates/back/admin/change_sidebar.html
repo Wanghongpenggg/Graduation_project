@@ -1,0 +1,151 @@
+{% extends 'back/base.html'%}
+{% from 'macros/pagination.html' import pagination_macro%}
+{% block main %}
+<div class="content">
+    <div class="container-fluid">
+        <!--<h4 class="page-title">修改功能</h4>-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">功能列表</div>
+                    </div>
+                    <div class="card-body show-card">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">功能名称</th>
+                                <th scope="col">url_for</th>
+                                <th scope="col">可见性</th>
+                                <th scope="col">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for side_item in pagination.items%}
+                            <tr>
+                                <td>{{loop.index}}</td>
+                                <td>{{side_item.function_text}}</td>
+                                <td>{{side_item.function_url}}</td>
+                                <td>
+                                    {% if side_item.genre==0 %}
+                                    所有
+                                    {% elif side_item.genre==1 %}
+                                    企业
+                                    {%else%}
+                                    管理员
+                                    {% endif %}
+
+                                </td>
+                                <td>
+                                    <button class="btn btn-warning" name="edit_btn" this_id="{{side_item.id}}">修改
+                                    </button>
+                                    <button class="btn btn-danger" name="del_btn" type="submit"
+                                            request_url="{{url_for('back.manage_function')}}"
+                                            back_ur="{{url_for('back.manage_function')}}" this_id="{{side_item.id}}">删除
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {{ pagination_macro(pagination,'back.manage_function') }}
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success" id="add_btn">添加</button>
+                    </div>
+                </div>
+                <form id="post_form" hidden action="{{url_for('back.manage_function')}}" method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title"><!--添加功能/修改功能--></div>
+                        </div>
+                        <div class="card-body">
+                            <input id="is_edit" name="is_edit" value="0" hidden>
+                            <input id="edit_id" name="edit_id" hidden>
+                            <div class="form-group">
+                                <label for="function_text">菜单名称</label>
+                                <input type="text" class="form-control" id="function_text" name="function_text">
+                            </div>
+                            <div class="form-group">
+                                <label for="function_url">url_for</label>
+                                <input type="text" class="form-control" id="function_url" name="function_url">
+                            </div>
+                            <div class="form-group">
+                                <label for="genre">可见级别</label>
+                                <select class="form-control input-solid" id="genre" name="genre">
+                                    <option value="0">所有</option>
+                                    <option value="1">企业</option>
+                                    <option value="2">管理员</option>
+                                </select>
+                            </div>
+                            </input>
+                            <div class="card-action">
+                                <button class="btn btn-success" type="submit">提交</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block jscript %}
+<script>
+    function show_form(form,title,id,text,url,genre){
+        form.removeAttribute('hidden');
+        title_div = form.getElementsByClassName('card-title')[0];
+        title_div.innerText = title;
+        if(title=='修改功能'){
+            is_edit = document.getElementById('is_edit');
+            is_edit.setAttribute('value',1);
+            edit_id = document.getElementById('edit_id');
+            edit_id.setAttribute('value',id);
+            function_text = document.getElementById('function_text');
+            function_text.setAttribute('value',text);
+            function_url = document.getElementById('function_url');
+            function_url.setAttribute('value',url);
+            options = document.getElementById('genre').options;
+            for(index=0;index<options.length;index++){
+                if (options[index].text==genre){
+                    options[index].selected=true;
+                    break;
+                }
+            }
+        }
+    }
+    post_form = document.getElementById('post_form');
+    add_btn = document.getElementById('add_btn');
+    add_btn.onclick=function(){
+        show_form(post_form,'添加功能',null,null,null,null);
+    };
+    edit_btn_list = document.getElementsByName('edit_btn');
+    for (i=0; i< edit_btn_list.length;i++){
+        edit_btn_list[i].addEventListener('click',(function(edit_btn){
+            return function(){
+            td_list = edit_btn.parentElement.parentElement.children;
+            show_form(post_form,'修改功能',edit_btn.getAttribute('this_id'),td_list[1].innerText,td_list[2].innerText,td_list[3].innerText);
+            }
+        })(edit_btn_list[i]),false);
+    }
+
+    $("[name='del_btn']").click(function(){
+        $.ajax({
+            url:$(this).attr('request_url'),
+            type:'DELETE',
+            dataType:'text',
+            data:{
+                'del_id':$(this).attr('this_id')
+            },
+            success: function(){
+                window.location.reload();
+            }
+        })
+    });
+
+
+
+</script>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% macro get_type_macro(type) %}
+    {% if type==0 %}
+        传感器
+    {% elif type==1 %}
+        设备
+    {% elif type==2 %}
+        系统
+    {% elif type==3 %}
+        传感器数据
+    {% elif type==4 %}
+        设备数据
+    {% elif type==5 %}
+        系统数据
+    {% endif %}
+{% endmacro %}
